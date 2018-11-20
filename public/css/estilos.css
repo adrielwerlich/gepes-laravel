@@ -146,25 +146,48 @@
     margin-left: 3%;
 }
 
-#slider {
-    width: 600px;
-    height: 300px;
-    display: flex;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-  }
-  .slide {
-    width: 33%;
-    flex-shrink: 0;
-    height: 100%;
-  }
+.card{
+    cursor: pointer;
+}
 
+.manchete-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: minmax(60px 90px) minmax(60px 90px)  repeat(4, 1fr);
+}
 
+#tema {
+    grid-column:1/3;
+    grid-row: 1/2; 
+}
 
+#titulo{
+    grid-column:1/4;
+    grid-row: 2/3; 
+}
 
+#corpo {
+    grid-column:1/5;
+    grid-row: 3/6; 
+}
 
+#imagem {
+    grid-column:5/7;
+    grid-row: 2/4; 
+}
 
+#btn-back-begin-div {
+    grid-column:3/5;
+    grid-row: 6/7; 
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows:  repeat(4, 1fr);
+}
 
+#btn-back-begin{
+    grid-column:2/4;
+    grid-row: 2/3;
+}
 
 /* ##########  CONTEÚDO ACIMA ################*/
 

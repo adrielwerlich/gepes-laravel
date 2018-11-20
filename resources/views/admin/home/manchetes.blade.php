@@ -138,6 +138,7 @@
 @section('js')
 <!-- <script src="https://code.jquery.com/jquery.min.js"></script> -->
 <script>
+    
 $('#edit').on('show.bs.modal', e => {
     console.log('modal')
     debugger

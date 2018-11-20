@@ -69,30 +69,57 @@ Vida')
 
                     <router-view></router-view>
 
+                    <div id="wraper" style="display:none">
+
+
+
+                        {{-- <div id="btn-back-begin-div" class="col-xs-12" style="display:none">
+                            <button class="btn-lg btn-info" id="btn-back-begin"> Voltar </button>
+                        </div> --}}
+                        
+                    </div>
+
 
                     <div id="news-slider" class="owl-carousel owl-theme col-12" style="display:block">
 
                         
 
                         @foreach ($manchetes as $manchete)
+                             {{-- @php
+                                $tm;
+                                foreach($temas as $tema)
+                                if ($tema->id == $manchete->temaId)
+                                    $t = $tema->tema 
+                                
+                            @endphp  --}}
+                            <!-- dumping ... -  -->
+                             <!-- dump($t) }} -->
                         <!-- <div class="slide" id="slide-{{$manchete->id}}"> -->
                             <div class="col-sm-12 col-md-12 col-lg-12" style="border: 1px solid brown">
-                                <div class="card mb-4 shadow-sm">
+                                <div 
+                                    class="card mb-4 shadow-sm" 
+                                    data-id = "{{$manchete->id}}"
+                                    data-tema="{{$manchete->tema}}"
+                                    data-tit="{{ $manchete->titulo }}"
+                                    data-desc="{{$manchete->descricao}}" 
+                                    {{-- data-img="{{$manchete->imagem}}" --}}
+                                >
                                     <div class="card-header">
                                         <h2 style="background: gold;" class="my-0 font-weight-normal">
-                                            @foreach($temas as $tema)
+                                            {{-- @foreach($temas as $tema)
                                             @if ($tema->id == $manchete->temaId)
                                             {{ $tema->tema }}
                                             @endif
-                                            @endforeach
+                                            @endforeach  --}}
+                                            {{ $manchete->tema }}
                                         </h2>
                                     </div>
-                                    <h3>Titulo {{ $manchete->titulo }}</h3>
+                                    <h3>{{ $manchete->titulo }}</h3>
 
                                     {{-- {#{{ dump(manchete) }}#}--}}
 
                                     <a href="{{ asset('/storage/'.$manchete->imagem) }}">
-                                        <img class="col-md-4 card-img-top" alt="Thumbnail [100%x225]" style="max-width: 30%; max-height:120px; display: block;"
+                                        <img id="img-{{$manchete->id}}" class="col-md-4 card-img-top" alt="Thumbnail [100%x225]" style="max-width: 30%; max-height:120px; display: block;"
                                             src="{{ asset('/storage/'.$manchete->imagem) }}" data-holder-rendered="true">
                                     </a>
                                     <div class="card-body">
@@ -103,8 +130,34 @@ Vida')
                                         </div>
                                         <div class="d-flex justify-content-between align-items-center">
                                             <div class="btn-group">
-                                                <router-link id="btn-view" data-id-manchete={{ $manchete->id }} to="/manchete" type="button" style="background-color:blue"
-                                                    class="btn btn-sm">Ver</router-link>
+                                                <!-- <router-link id="btn-view" data-id-manchete="{{ $manchete->id }}" to="/manchete" type="button" style="background-color:blue"
+                                                    class="btn btn-sm">Ver</router-link> -->
+                                                <a 
+                                                    id="btn-view-{{ $manchete->id }}"
+                                                    
+                                                    data-id = "{{$manchete->id}}"
+                                                    data-tema="{{$manchete->tema}}"
+                                                    data-tit="{{ $manchete->titulo }}"
+                                                    data-desc="{{$manchete->descricao}}" 
+                                                    {{-- data-img="{{$manchete->imagem}}" --}}
+                                                    
+                                                    to="/manchete" type="button" style="background-color:blue; margin-bottom: 2px"
+                                                    class="btn btn-sm btn-view">
+                                                    
+                                                    Ver
+                                                
+                                                </a>
+
+                                                @if( strlen($manchete->link) > 0 )
+                                                    <a 
+                                                        id="btn-view-{{ $manchete->id }}" href="{{ $manchete->link }}"
+                                                        type="button" style="background-color:red; margin-bottom: 2px"
+                                                        class="btn btn-sm btn-link">
+                                                        
+                                                        Link
+                                                    
+                                                    </a>
+                                                @endif
                                             </div>
                                             <small class="text-muted">{{$manchete->created_at}}</small>
                                         </div>
@@ -168,12 +221,13 @@ Vida')
     @stop {{-- fim do content nesse stop--}}
 
     @section('javascripts')
+    <script src="https://code.jquery.com/jquery-3.3.1.js"> </script>
     <script src="{{ asset('/js/GepesController.js')}}"></script>
     <script src="../../js/app.js"></script>
     <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script> -->
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     
-    <script src="https://code.jquery.com/jquery-3.3.1.js"> </script>
+   
 
     <script src="{{ asset('/js/owl.carousel.min.js')}}"></script>
 
