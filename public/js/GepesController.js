@@ -74,75 +74,48 @@ class GepesJsControl{
         }
     }
 
-    showArticle(){
-        console.log("show article")
-    }
-
 }
 window.gepesJsControl = new GepesJsControl()
 
-    function showArticle(e){
-        console.log("show article")
-        // console.log(e)
-    // carousel.style.display = 'none';
-
-    }
 
 const carousel = document.getElementById('news-slider')
 const wraper = document.getElementById('wraper')
 const btnBack = document.getElementById('btn-back-begin-div')
 let elements = new Set()
+const quemSomos = {}
 
-function showManchete(e){
-    carousel.style.display = 'none'
-    wraper.style.display = 'block'
- 
-
-    let btn = e.currentTarget
-    let id = btn.dataset['id']
-
-    debugger
-    let elId = 'manchete-wraper' + id
-    let localEl = document.getElementById(elId)
-    if (localEl)
-        return
-    
-
-    for(let element of elements) {
-        // console.log('value', element)
-
-        if (element.id == elId) {
-            appendEl(element)
-            return false;
-        }
+let form = document.getElementById('form-contato')
+let divMap = document.getElementById('map-content')
 
 
-    }
 
 
-    let tema = btn.dataset['tema']
-    let titulo = btn.dataset['tit']
-    let desc = btn.dataset['desc']
+function manchete(manchete) {
+    console.log(manchete)
+    id = manchete.id
+    tema = manchete.tema
+    titulo = manchete.titulo
+    desc = manchete.descricao
+
+    createAndShowDiv(id, tema, titulo, desc)
+}
+
+function createAndShowDiv(id, tema, titulo, desc) {
 
     let div = document.createElement('div')
-
-    let img = document.getElementById('img-'+id)
-
-    let localImg = img.cloneNode(true)
-
-    // console.log(localImg)
 
     div.innerHTML = 
     `
         <h2 id="tema"> ${tema} </h2> 
         <hr>
         <h3 id="titulo"> ${titulo} </h3>
-        <article id="corpo"> ${desc} </article>
-        <!--localImg id="imagem" src="{{ asst('localImg') "-->
+        <article id="corpo" style="font-size:18px"> ${desc} </article>
     `
 
-    localImg.style = 'max-width: 100%; max-height: 200px; grid-row: 3/5; grid-column: 5/7;'
+    let localImg = copyImgEl(id)
+
     div.appendChild(localImg)
+
     div.id = 'manchete-wraper' + id
     div.classList.add('manchete-grid')
 
@@ -165,16 +138,65 @@ function showManchete(e){
 
     appendEl(div)
 
+    return div
+}
+
+function copyImgEl(id) {
+    let img = document.getElementById('img-'+id)
+    let localImg = img.cloneNode(true)
+    localImg.style = 'max-width: 100%; max-height: 200px; grid-row: 3/5; grid-column: 5/7;'
+
+    return localImg
+}
+
+function showManchete(e){
+    
+    // debugger 
+
+    let btn = e.currentTarget
+    let id = btn.dataset['id']
+
+
+    let elId = 'manchete-wraper' + id
+    
+    let localEl = document.getElementById(elId)
+    if (localEl)
+        return
+    
+
+    for(let element of elements) {
+        // console.log('value', element)
+
+        if (element.id == elId) {
+            appendEl(element)
+            return false;
+        }
+
+    }
+
+
+    let tema = btn.dataset['tema']
+    let titulo = btn.dataset['tit']
+    let desc = btn.dataset['desc']
+
+    div = createAndShowDiv(id, tema, titulo, desc)
+
+
     elements.add(div)
+
 }
 
 function appendEl(div){
     
+    carousel.style.display = 'none'
+
     while (wraper.firstChild) {
         wraper.removeChild(wraper.firstChild);
     }
 
     wraper.appendChild(div)
+
+    wraper.style.display = 'block'
 }
 
 $('.card').on('click', e => {
@@ -197,6 +219,71 @@ $('.btn-view').on('click', e => {
     // modal.find('.modal-body #link').val(link)
     // modal.find('modal-body #tit').val(titulo)
 })
+
+// Initialize and add the map
+function initMap() {
+    
+    console.log('entrou no initMap')
+
+    // The location of Uluru
+    let uluru = {lat: -27.82344495623004, lng: -50.316685438156135};
+    // The map, centered at Uluru
+    let divMap = document.getElementById('map')
+    let map = new google.maps.Map(
+        divMap, {zoom: 18, center: uluru});
+        
+    // The marker, positioned at Uluru
+    let marker = new google.maps.Marker({position: uluru, map: map});
+
+    
+}
+
+function showMap(){
+    console.log('entrou no show map')
+    wraper.style.display = 'none'
+    // btnBack.style.display = 'none'
+    carousel.style.display = 'none'
+    form.style.display = 'none'
+    
+    divMap.style.display = 'block'
+}
+
+function mostraFormContato(){
+
+    console.log('entrou no form contato')
+    console.log(form)
+    form.style.display = 'block'
+
+    carousel.style.display = 'none'
+    wraper.style.display = 'none'
+    // btnBack.style.display = 'none'
+    divMap.style.display = 'none'
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // document.getElementById('btn-back-begin').on('click', e => {
 //     console.log('withouth jquey')

@@ -429,15 +429,17 @@
     </div>
 </div>
 
-{{--{% block javascripts %}--}}
 
 <script src="{{ asset('/js/script-uniplac2.js')}}"></script>
 <script src="{{ asset('/js/bootstrap-image-gallery.min.js')}}"></script>
 <script src="{{ asset('/js/jquery.blueimp-gallery.min.js')}}"></script>
 
 <script type="text/javascript" async src="https://d335luupugsy2.cloudfront.net/js/loader-scripts/a2d64734-0a51-4633-91a5-8437e2114340-loader.js"></script>
-@yield('javascripts')
-{{--{% endblock %}--}}
+<!-- <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap">
+</script> -->
+
+@yield('javascript')
 <!--<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>-->
 <!--<script src="https://v1.vuejs.org/js/vue.js"></script>-->
 <!--<script src="https://unpkg.com/vue"></script>-->

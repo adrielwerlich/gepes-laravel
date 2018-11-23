@@ -43,8 +43,9 @@ Route::group([
 //Route::get('admin','Admin\AdminController@index')->name('admin.home');
 
 Route::get('/', 'Site\GepesController@index')->name('home');
-Route::get('/gepes', 'Site\GepesController@index')->name('gepesHome');
+Route::get('/gepes', 'Site\GepesController@index')->name('home');
 Route::get('/home', 'Site\GepesController@index')->name('home');
+// Route::post('/sendform', 'Site\GepesController@sendMail')->name('phpSendMail');
 //    function () {
 //    return view('welcome');
 //});
