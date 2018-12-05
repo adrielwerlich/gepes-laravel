@@ -316,7 +316,7 @@ Vida')
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
 
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCxf-_YAcQPy4qAwLROFUIucjzHt8l0uIs&callback=initMap">
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCxf-_AcQPy4qAwLROFUIucjzHt8l0uIs&callback=initMap">
 </script>
 
 {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/flickity/2.1.2/flickity.pkgd.js"></script> --}}
