@@ -199,11 +199,11 @@ function appendEl(div){
     wraper.style.display = 'block'
 }
 
-$('.card').on('click', e => {
-    console.log('card click')
-    // console.log(e.currentTarget)
-    showManchete(e)
-})
+// $('.card').on('click', e => {
+//     console.log('card click')
+//     // console.log(e.currentTarget)
+//     showManchete(e)
+// })
 
 
 

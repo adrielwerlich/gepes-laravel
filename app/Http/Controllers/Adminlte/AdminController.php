@@ -28,9 +28,6 @@ class AdminController extends Controller
     public function cadastrarTemas(Request $req)
     {
 
-//        $t = $tema->firstOrCreate([]);
-//        dd($req);
-
         $this->validate($req,[
             'temaAcadastrar' => 'required|string|max:191',
         ]);
@@ -38,10 +35,6 @@ class AdminController extends Controller
         $res = TemaDaManchete::create([
             'tema' => $req['temaAcadastrar'],
         ]);
-
-//        $res = $t->setTema($req->temaAcadastrar);
-        
-        // dd($res);
 
         if($res)
             return redirect()->route('admin.temas')

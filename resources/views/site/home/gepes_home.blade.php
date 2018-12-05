@@ -8,7 +8,8 @@ Vida')
 {{--
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
 --}}
-{{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flickity/2.1.2/flickity.css" media="screen"> --}}
+{{--
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flickity/2.1.2/flickity.css" media="screen"> --}}
 
 <link rel="stylesheet" href="{{ asset('/css/estilos.css')}}" />
 <link rel="stylesheet" href="{{ asset('/css/animate.css')}}" />
@@ -76,76 +77,72 @@ Vida')
 
 
             </div>
-            
-            <div class="container">
-                <div class="row">
-                    {{-- ######################### CAROUSEL SLIDER ABAIXO ###################################--}}
-                    <div id="news-slider" class="owl-carousel owl-theme col-12" style="display:block; margin: 1px; overflow-x: hidden;">
 
 
-                        @foreach ($manchetes as $manchete)
-                        <div id="element-{{$manchete->id}}" class="">
-                            <div class="col-sm-12 col-md-12 col-lg-12" style="border: 1px solid brown; margin: 2px">
-                                <div class="card mb-4 shadow-sm" data-id="{{$manchete->id}}" data-tema="{{$manchete->tema}}"
-                                    data-tit="{{ $manchete->titulo }}" data-desc="{{$manchete->descricao}}">
-                                    <div class="card-header">
-                                        <h2 style="background: gold;" class="my-0 font-weight-normal">
-                                            {{ $manchete->tema }}
-                                        </h2>
+            {{-- ######################### CAROUSEL SLIDER ABAIXO ###################################--}}
+            <div id="news-slider" class="owl-carousel owl-theme col-12" style="display:block; margin: 1px; overflow-x: hidden;">
+
+
+                @foreach ($manchetes as $manchete)
+                <div id="element-{{$manchete->id}}" class="">
+                    <div class="col-sm-12 col-md-12 col-lg-12" style="border: 1px solid brown; margin: 2px">
+                        <div class="card mb-4 shadow-sm" data-id="{{$manchete->id}}" data-tema="{{$manchete->tema}}"
+                            data-tit="{{ $manchete->titulo }}" data-desc="{{$manchete->descricao}}">
+                            <div class="card-header">
+                                <h2 style="background: gold;" class="my-0 font-weight-normal">
+                                    {{ $manchete->tema }}
+                                </h2>
+                            </div>
+                            <h3>{{ $manchete->titulo }}</h3>
+
+                            <a href="{{ asset('/storage/'.$manchete->imagem) }}">
+                                <img id="img-{{$manchete->id}}" class="col-md-4 card-img-top" alt="No image" style="max-width: 30%; max-height:120px; display: block;"
+                                    src="{{ asset('/storage/'.$manchete->imagem) }}" data-holder-rendered="true">
+                            </a>
+                            <div class="card-body">
+                                <div>
+                                    <p class="card-text" style="word-wrap: break-word;">
+                                        @if ( strpos($manchete->descricao, 'img') )
+
+                                        {!! str_limit(strip_tags($manchete->descricao), $limit = 50, $end =
+                                        '...') !!}
+
+                                        @else
+
+                                        {!! str_limit(strip_tags($manchete->descricao), $limit = 350, $end = '...') !!}
+
+                                        @endif
+                                    </p>
+                                </div>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="btn-group">
+                                        <a id="btn-view-{{ $manchete->id }}" data-id="{{$manchete->id}}" data-tema="{{$manchete->tema}}"
+                                            data-tit="{{ $manchete->titulo }}" data-desc="{{$manchete->descricao}}" to="/manchete"
+                                            type="button" style="background-color:blue; margin-bottom: 2px" class="btn btn-sm btn-view">
+
+                                            Ver
+
+                                        </a>
+
+                                        @if( strlen($manchete->link) > 0 )
+                                        <a id="btn-view-{{ $manchete->id }}" href="{{ $manchete->link }}" type="button"
+                                            style="background-color:red; margin-bottom: 2px" class="btn btn-sm btn-link">
+
+                                            Link
+
+                                        </a>
+                                        @endif
                                     </div>
-                                    <h3>{{ $manchete->titulo }}</h3>
-
-                                    <a href="{{ asset('/storage/'.$manchete->imagem) }}">
-                                        <img id="img-{{$manchete->id}}" class="col-md-4 card-img-top" alt="No image"
-                                            style="max-width: 30%; max-height:120px; display: block;" src="{{ asset('/storage/'.$manchete->imagem) }}"
-                                            data-holder-rendered="true">
-                                    </a>
-                                    <div class="card-body">
-                                        <div>
-                                            <p class="card-text">
-                                                @if ( strpos($manchete->descricao, 'img') )
-
-                                                {!! str_limit(strip_tags($manchete->descricao), $limit = 50, $end =
-                                                '...') !!}
-
-                                                @else
-
-                                                {!! str_limit(strip_tags($manchete->descricao), $limit = 350, $end = '...') !!}
-
-                                                @endif
-                                            </p>
-                                        </div>
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <div class="btn-group">
-                                                <a id="btn-view-{{ $manchete->id }}" data-id="{{$manchete->id}}"
-                                                    data-tema="{{$manchete->tema}}" data-tit="{{ $manchete->titulo }}"
-                                                    data-desc="{{$manchete->descricao}}" to="/manchete" type="button"
-                                                    style="background-color:blue; margin-bottom: 2px" class="btn btn-sm btn-view">
-
-                                                    Ver
-
-                                                </a>
-
-                                                @if( strlen($manchete->link) > 0 )
-                                                <a id="btn-view-{{ $manchete->id }}" href="{{ $manchete->link }}" type="button"
-                                                    style="background-color:red; margin-bottom: 2px" class="btn btn-sm btn-link">
-
-                                                    Link
-
-                                                </a>
-                                                @endif
-                                            </div>
-                                            <small class="text-muted">{{$manchete->created_at}}</small>
-                                        </div>
-                                    </div>
+                                    <small class="text-muted">{{$manchete->created_at}}</small>
                                 </div>
                             </div>
                         </div>
-                        @endforeach
+                    </div>
+                </div>
+                @endforeach
 
-                    </div> <!-- news-slider -->
-                </div> <!-- row -->
-            </div> <!-- container -->
+            </div> <!-- news-slider -->
+
             {{-- ######################### CAROUSEL SLIDER ACIMA ###################################--}}
 
         </div>
@@ -220,7 +217,7 @@ Vida')
 
                     <!-- Email input-->
                     <div class="form-group">
-                        <label class="col-md-3 control-label" for="email">Your E-mail</label>
+                        <label class="col-md-3 control-label" for="email">Seu E-mail</label>
                         <div class="col-md-9">
                             <input id="email" name="_replyto" type="text" placeholder="Seu email" class="form-control">
                         </div>
@@ -282,18 +279,28 @@ Vida')
 
 
 <div class="container">
-    <div class="row alwi-dados-rodape">
+    <div class="row rodape" style="background:lightskyblue">
         <div class="col-md-3 col-sm-4">
             <span class="alwi-dados-titulo">Fone:</span>
-            <span class="alwi-dados-contatos"> (49) 3251-1000 </span>
+            <span class="alwi-dados-contatos"> (49) configurar telefone </span>
         </div>
         <div class="col-md-5 col-sm-4">
             <span class="alwi-dados-titulo"> E-MAIL:</span>
-            <span class="alwi-dados-contatos"> stricto@uniplaclages.edu.br </span>
+            <span class="alwi-dados-contatos"> marininh@terra.com.br </span>
         </div>
         <div class="col-md-4 col-sm-4 col-md-pull-2">
             <span class="alwi-dados-titulo"> COORDENA&Ccedil;&Atilde;O:</span>
+            <span class="alwi-dados-contatos"> Líder: Dra. Marina Patrício de Arruda </span>
+        </div>
+        {{-- <div class="col-md-4 col-sm-4 col-md-pull-2">
+            <span class="alwi-dados-titulo"> COORDENA&Ccedil;&Atilde;O:</span>
             <span class="alwi-dados-contatos"> Profa. Dra. Lucia Ceccato de Lima </span>
+        </div> --}}
+        <div class="col-md-4 col-sm-4">
+            <a href="https://www.facebook.com/pages/Gepesvida/413504262107962?ref=hl" target="_blank">
+                <img src="{{ asset('imguniplac/icone4.png') }}"></a>
+            <a href="https://www.youtube.com/channel/UCaS0ep1zYxl85NTcHKnbP_g" target="_blank">
+                <img src="{{ asset('imguniplac/icone8.png') }}"></a>
         </div>
     </div>
 </div>
@@ -337,21 +344,6 @@ Vida')
         // contain: true
         // });
 
-
-
-
-
-
-
-
-        // $('#news-slider').on('mousewheel', '.owl-stage', function (e) {
-        //     if (e.deltaY>0) {
-        //         owl.trigger('next.owl');
-        //     } else {
-        //         owl.trigger('prev.owl');
-        //     }
-        //     e.preventDefault();
-        // });
 
         $('#news-slider').owlCarousel({
             // center: false,
