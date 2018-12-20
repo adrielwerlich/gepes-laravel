@@ -43,8 +43,6 @@ Vida')
                 <a onclick="manchete({{$linhas}})" href="#">LINHAS DE PESQUISA</a>
                 <a href="{{ asset('/storage/manchetes/certi.pdf') }}">CERTIFICAÇÃO</a>
                 <a onclick="showMap()" href="#">LOCALIZAÇÃO</a>
-                <a href="/admin">ADMIN</a>
-
             </div>
         </div>
 

@@ -44,7 +44,7 @@ return [
             'driver' => 'mysql',
             'host' => env('DB_HOST', '172.16.255.246'),
             'port' => env('DB_PORT', '3306'),
-            'database' => env('DB_DATABASE', 'gepes'),
+            'database' => env('DB_DATABASE', 'forge'),
             'username' => env('DB_USERNAME', 'ccmy.gepes'),
             'password' => env('DB_PASSWORD', 'gepes*adm!'),
             'unix_socket' => env('DB_SOCKET', ''),
